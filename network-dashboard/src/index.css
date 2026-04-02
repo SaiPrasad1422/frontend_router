@@ -109,3 +109,12 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 150px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
