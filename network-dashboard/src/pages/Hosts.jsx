@@ -4,38 +4,21 @@ import HostsTable from "../components/HostsTable";
 
 function Hosts() {
   const [hosts, setHosts] = useState([]);
-  const [page, setPage] = useState(1);
-
-  const itemsPerPage = 10;
 
   useEffect(() => {
-    getHosts().then(setHosts);
-  }, []);
+    const fetchData = async () => {
+      const data = await getHosts();
+      console.log("Hosts:", data); // 🔥 debug
+      setHosts(data);
+    };
 
-  const start = (page - 1) * itemsPerPage;
-  const currentData = hosts.slice(start, start + itemsPerPage);
+    fetchData();
+  }, []);
 
   return (
     <div>
       <h2>Hosts</h2>
-
-      <HostsTable data={currentData} />
-
-      {/* Pagination */}
-      <div style={{ marginTop: "10px" }}>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Prev
-        </button>
-
-        <span style={{ margin: "0 10px" }}>Page {page}</span>
-
-        <button
-          onClick={() => setPage(page + 1)}
-          disabled={start + itemsPerPage >= hosts.length}
-        >
-          Next
-        </button>
-      </div>
+      <HostsTable data={hosts} />
     </div>
   );
 }

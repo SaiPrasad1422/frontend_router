@@ -4,11 +4,13 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8000",
 });
 export const getHosts = async () => {
-  return Array.from({ length: 20 }, (_, i) => ({
-    ip: `192.168.0.${i + 1}`,
-    location: i % 2 === 0 ? "Local" : "Remote",
-    throughput: `${Math.floor(Math.random() * 100)} Mbps`,
-  }));
+  try {
+    const res = await api.get("/hosts");
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching hosts:", err);
+    return [];
+  }
 };
 
 
