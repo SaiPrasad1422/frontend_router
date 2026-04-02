@@ -24,7 +24,7 @@ function HostsTable({ data }) {
             <td>{host.thpt?.bps?.toFixed(2)}</td>
             <td>{host.num_flows?.total}</td>
             <td>{host.bytes?.sent}</td>
-            <td>{host.bytes?.rcvd}</td>
+            <td>{host.bytes?.recvd}</td>
           </tr>
         ))}
       </tbody>
