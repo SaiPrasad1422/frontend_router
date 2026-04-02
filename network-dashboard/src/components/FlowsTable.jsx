@@ -3,19 +3,27 @@ function FlowsTable({ data }) {
     <table border="1">
       <thead>
         <tr>
-          <th>App</th>
-          <th>Protocol</th>
-          <th>Client</th>
-          <th>Server</th>
+          <th>Client IP</th>
+          <th>Server IP</th>
+          <th>L4</th>
+          <th>L7</th>
+          <th>Duration</th>
+          <th>Throughput (bps)</th>
         </tr>
       </thead>
+
       <tbody>
-        {data.map((f, i) => (
+        {data.map((flow, i) => (
           <tr key={i}>
-            <td>{f.app}</td>
-            <td>{f.protocol}</td>
-            <td>{f.client}</td>
-            <td>{f.server}</td>
+            <td>{flow.client?.ip}</td>
+            <td>{flow.server?.ip}</td>
+            <td>{flow.protocol?.l4}</td>
+
+            {/* 👇 IMPORTANT */}
+            <td>{flow.protocol?.[17]}</td>
+
+            <td>{flow.duration}</td>
+            <td>{flow.thpt?.bps?.toFixed(2)}</td>
           </tr>
         ))}
       </tbody>

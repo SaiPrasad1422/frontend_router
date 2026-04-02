@@ -1,3 +1,8 @@
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://127.0.0.1:8000",
+});
 export const getHosts = async () => {
   return Array.from({ length: 20 }, (_, i) => ({
     ip: `192.168.0.${i + 1}`,
@@ -6,21 +11,18 @@ export const getHosts = async () => {
   }));
 };
 
+
+
+
+
 export const getFlows = async () => {
-  return [
-    {
-      app: "QUIC",
-      protocol: "UDP",
-      client: "192.168.0.2",
-      server: "google.com",
-    },
-    {
-      app: "STUN",
-      protocol: "UDP",
-      client: "192.168.0.3",
-      server: "stun.server.com",
-    },
-  ];
+  try {
+    const res = await api.get("/flows");
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching flows:", err);
+    return [];
+  }
 };
 
 export const getStats = async () => {
