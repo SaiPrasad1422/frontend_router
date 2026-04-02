@@ -4,7 +4,9 @@ function FlowsTable({ data }) {
       <thead>
         <tr>
           <th>Client IP</th>
+          <th>Client Port</th>
           <th>Server IP</th>
+          <th>Server Port</th>
           <th>L4</th>
           <th>L7</th>
           <th>Duration</th>
@@ -16,11 +18,13 @@ function FlowsTable({ data }) {
         {data.map((flow, i) => (
           <tr key={i}>
             <td>{flow.client?.ip}</td>
-            <td>{flow.server?.ip}</td>
-            <td>{flow.protocol?.l4}</td>
+            <td>{flow.client?.port}</td>
 
-            {/* 👇 IMPORTANT */}
-            <td>{flow.protocol?.l7}</td>
+            <td>{flow.server?.ip}</td>
+            <td>{flow.server?.port}</td>
+
+            <td>{flow.protocol?.l4}</td>
+            <td>{flow.protocol?.[17]}</td>
 
             <td>{flow.duration}</td>
             <td>{flow.thpt?.bps?.toFixed(2)}</td>
