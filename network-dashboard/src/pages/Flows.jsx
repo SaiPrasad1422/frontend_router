@@ -6,7 +6,7 @@ function Flows() {
   const [flows, setFlows] = useState([]);
   const [page, setPage] = useState(1);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     getFlows().then(setFlows);

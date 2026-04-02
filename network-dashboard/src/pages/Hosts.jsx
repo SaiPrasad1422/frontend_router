@@ -6,7 +6,7 @@ function Hosts() {
   const [hosts, setHosts] = useState([]);
   const [page, setPage] = useState(1);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     getHosts().then(setHosts);
