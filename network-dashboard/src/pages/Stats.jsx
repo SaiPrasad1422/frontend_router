@@ -1,18 +1,31 @@
 import { useEffect, useState } from "react";
-import { getStats } from "../services/api";
-import ProtocolChart from "../components/ProtocolChart";
+import { getInterface } from "../services/api";
+import InterfaceStats from "../components/InterfaceStats";
 
 function Stats() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    getStats().then(setData);
+    const fetchData = async () => {
+      const res = await getInterface();
+      console.log("Interface Data:", res);
+      setData(res);
+    };
+
+    fetchData();
+
+    // 🔥 auto refresh like ntopng
+    const interval = setInterval(fetchData, 2000);
+    return () => clearInterval(interval);
+
   }, []);
+
+  if (!data) return <p>Loading...</p>;
 
   return (
     <div>
-      <h2>Protocol Stats</h2>
-      <ProtocolChart data={data} />
+      <h2>Interface Dashboard</h2>
+      <InterfaceStats data={data} />
     </div>
   );
 }

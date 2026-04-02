@@ -27,10 +27,12 @@ export const getFlows = async () => {
   }
 };
 
-export const getStats = async () => {
-  return [
-    { protocol: "QUIC", value: 60 },
-    { protocol: "STUN", value: 30 },
-    { protocol: "SSL", value: 10 },
-  ];
+export const getInterface = async () => {
+  try {
+    const res = await api.get("/interface");
+    return res.data;
+  } catch (err) {
+    console.error("Interface API error:", err);
+    return null;
+  }
 };
