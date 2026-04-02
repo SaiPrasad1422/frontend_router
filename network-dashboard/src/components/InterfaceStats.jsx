@@ -2,6 +2,9 @@ import TrafficPieChart from "./TrafficPieChart";
 import { formatBytes, formatSpeed } from "../utils/format";
 
 function InterfaceStats({ data }) {
+  const interfaceId = data.id;
+  const interfaceName = data.name;
+
   const sentBytes = data.bytes_upload || 0;
   const recvBytes = data.remote2local || 0;
 
@@ -14,48 +17,38 @@ function InterfaceStats({ data }) {
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
 
-      {/* TOP PIE CHARTS */}
-      <div style={{ display: "flex", gap: "40px" }}>
-        <TrafficPieChart data={data} />
-      </div>
+      {/* 🔥 HEADER */}
+      <h2>
+        Interface: {interfaceName || "Unknown"} (ID: {interfaceId})
+      </h2>
 
-      {/* TRAFFIC STATS */}
-      <div style={{ marginTop: "30px" }}>
-
-        {/* Sent */}
-        <div style={{ marginBottom: "25px" }}>
-          <strong>Total Traffic Sent</strong>
-          <p>
-            {formatBytes(sentBytes)} ({sentPackets} pkts)
-          </p>
-
-          <div style={{ background: "#ddd", height: "10px", borderRadius: "5px" }}>
-            <div style={{
-              width: "60%",
-              height: "100%",
-              background: "#007bff"
-            }} />
-          </div>
-
-          <p>↑ {formatSpeed(uploadSpeed)}</p>
+      {/* 🔥 THROUGHPUT */}
+      <div style={{ display: "flex", gap: "30px", marginTop: "20px" }}>
+        <div>
+          <h4>Upload ⬆️</h4>
+          <p>{formatSpeed(uploadSpeed)}</p>
         </div>
 
-        {/* Received */}
         <div>
-          <strong>Traffic Received</strong>
-          <p>
-            {formatBytes(recvBytes)} ({recvPackets} pkts)
-          </p>
+          <h4>Download ⬇️</h4>
+          <p>{formatSpeed(downloadSpeed)}</p>
+        </div>
+      </div>
 
-          <div style={{ background: "#ddd", height: "10px", borderRadius: "5px" }}>
-            <div style={{
-              width: "40%",
-              height: "100%",
-              background: "#f4b400"
-            }} />
-          </div>
+      {/* 🔥 PIE CHART */}
+      <TrafficPieChart data={data} />
 
-          <p>↓ {formatSpeed(downloadSpeed)}</p>
+      {/* 🔥 TRAFFIC DETAILS */}
+      <div style={{ marginTop: "30px" }}>
+
+        <div>
+          <h4>Traffic Sent</h4>
+          <p>{formatBytes(sentBytes)} ({sentPackets} pkts)</p>
+        </div>
+
+        <div style={{ marginTop: "15px" }}>
+          <h4>Traffic Received</h4>
+          <p>{formatBytes(recvBytes)} ({recvPackets} pkts)</p>
         </div>
 
       </div>

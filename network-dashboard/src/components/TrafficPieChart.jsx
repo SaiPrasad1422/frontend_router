@@ -1,16 +1,21 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { formatBytes } from "../utils/format";
 
-const COLORS = ["#4da6ff", "#66cc66"];
+const COLORS = ["#007bff", "#f4b400"];
 
 function TrafficPieChart({ data }) {
+  const sent = data.local2remote || 0;
+  const received = data.remote2local || 0;
+
+  const total = sent + received || 1;
+
   const chartData = [
-    { name: "Local → Remote", value: data.local2remote || 0 },
-    { name: "Remote → Local", value: data.remote2local || 0 },
+    { name: "Sent (Local → Remote)", value: sent },
+    { name: "Received (Remote → Local)", value: received },
   ];
 
   return (
-    <div>
+    <div style={{ marginTop: "20px" }}>
       <h3>Traffic Breakdown</h3>
 
       <PieChart width={400} height={300}>
@@ -18,8 +23,9 @@ function TrafficPieChart({ data }) {
           data={chartData}
           dataKey="value"
           outerRadius={100}
-          label={({ name, value }) =>
-            `${name}: ${formatBytes(value)}`
+          innerRadius={60}   // 🔥 donut style
+          label={({ value }) =>
+            `${((value / total) * 100).toFixed(1)}%`
           }
         >
           {chartData.map((_, i) => (
