@@ -20,7 +20,7 @@ function FlowsTable({ data }) {
             <td>{flow.protocol?.l4}</td>
 
             {/* 👇 IMPORTANT */}
-            <td>{flow.protocol?.[17]}</td>
+            <td>{flow.protocol?.l7}</td>
 
             <td>{flow.duration}</td>
             <td>{flow.thpt?.bps?.toFixed(2)}</td>
