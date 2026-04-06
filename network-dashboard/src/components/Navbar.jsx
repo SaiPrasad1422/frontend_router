@@ -6,6 +6,7 @@ function Navbar() {
       <Link to="/">Hosts</Link>
       <Link to="/flows">Flows</Link>
       <Link to="/stats">Stats</Link>
+      <Link to="/rules" style={{ color: "white" }}>Rules</Link>
     </nav>
   );
 }
