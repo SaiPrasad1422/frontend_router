@@ -37,3 +37,13 @@ export const getInterface = async () => {
   }
 };
 
+export const getRules = async () => {
+  try {
+    const res = await api.get("/rules");
+    return res.data;
+  } catch (err) {
+    console.error("Interface API error:", err);
+    return null;
+  }
+};
+
