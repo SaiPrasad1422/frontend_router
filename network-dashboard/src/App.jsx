@@ -4,6 +4,7 @@ import Hosts from "./pages/Hosts";
 import Flows from "./pages/Flows";
 import Stats from "./pages/Stats";
 import Rules from "./pages/Rules";
+import AddRule from "./pages/AddRule";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Hosts />} />
+        <Route path="/add-rule" element={<AddRule />} />
         <Route path="/flows" element={<Flows />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/rules" element={<Rules />} />
