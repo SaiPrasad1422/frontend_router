@@ -14,7 +14,7 @@ function Stats() {
 
     fetchData();
 
-    // 🔥 auto refresh like ntopng
+    
     const interval = setInterval(fetchData, 3000);
     return () => clearInterval(interval);
 
@@ -24,7 +24,7 @@ function Stats() {
 
   return (
     <div>
-      <h2>Interface Dashboard</h2>
+      <h2>Traffic Overview</h2>
       <InterfaceStats data={data} />
     </div>
   );

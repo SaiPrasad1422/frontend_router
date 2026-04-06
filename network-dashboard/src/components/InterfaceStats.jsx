@@ -63,17 +63,17 @@ function InterfaceStats({ data }) {
           marginTop: "25px"
         }}>
           <div className="card">
-            <h4>Upload ⬆️</h4>
+            <h4>Upload speed(bytes)</h4>
             <p>{formatSpeed(uploadSpeed)}</p>
           </div>
 
           <div className="card">
-            <h4>Download ⬇️</h4>
+            <h4>Download speed(bytes)</h4>
             <p>{formatSpeed(downloadSpeed)}</p>
           </div>
 
           <div className="card">
-            <h4>Total</h4>
+            <h4>Total(bytes)</h4>
             <p>{formatSpeed(uploadSpeed + downloadSpeed)}</p>
           </div>
         </div>
