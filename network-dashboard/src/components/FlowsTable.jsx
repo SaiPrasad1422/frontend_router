@@ -37,19 +37,19 @@ function FlowsTable({ data }) {
             {/* ✅ BUTTON */}
             <td>
               <button
-                onClick={() =>
-                  navigate("/add-rule", {
-                    state: {
-                      client_ip: flow.client?.ip,
-                      server_ip: flow.server?.ip,
-                      transport: flow.protocol?.l4,
-                      protocol: flow.protocol?.l7,
-                    },
-                  })
-                }
-              >
-                Add Rule
-              </button>
+  onClick={() =>
+    navigate("/add-rule", {
+      state: {
+        device_ip: flow.client?.ip,
+        remote_ip: flow.server?.ip,
+        transport: flow.protocol?.l4,
+        protocol: flow.protocol?.l7 ,
+      },
+    })
+  }
+>
+  Add Rule
+</button>
             </td>
           </tr>
         ))}

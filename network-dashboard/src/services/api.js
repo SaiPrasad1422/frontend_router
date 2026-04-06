@@ -47,9 +47,9 @@ export const getRules = async () => {
   }
 };
 
-export const removeRule = async (ruleId) => {
+export const removeRule = async (id) => {
   try {
-    await api.post(`/rules/remove/${ruleId}`);
+    await api.post(`/rules/remove/${id}`);
     return true;
   } catch (err) {
     console.error("Error removing rule:", err);

@@ -15,16 +15,16 @@ function RulesTable({ data, onDelete }) {
 
       <tbody>
         {data.map((rule) => (
-          <tr key={rule.rule_id}>
-            <td>{rule.rule_id}</td>
-            <td>{rule.device_ip}</td>
-            <td>{rule.remote_ip}</td>
+          <tr key={rule.id}>
+            <td>{rule.id}</td>
+            <td>{rule.device}</td>
+            <td>{rule.remote}</td>
             <td>{rule.action}</td>
             <td>{rule.protocol}</td>
             <td>{rule.direction}</td>
 
             <td>
-              <button onClick={() => onDelete(rule.rule_id)}>
+              <button onClick={() => onDelete(rule.id)}>
                 Remove
               </button>
             </td>
