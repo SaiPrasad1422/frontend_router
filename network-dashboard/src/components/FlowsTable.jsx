@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function FlowsTable({ data }) {
+  const navigate = useNavigate();
+
   return (
     <table border="1">
       <thead>
@@ -11,6 +15,7 @@ function FlowsTable({ data }) {
           <th>L7</th>
           <th>Duration</th>
           <th>Throughput (bps)</th>
+          <th>Action</th> {/* ✅ NEW COLUMN */}
         </tr>
       </thead>
 
@@ -28,6 +33,24 @@ function FlowsTable({ data }) {
 
             <td>{flow.duration}</td>
             <td>{flow.thpt?.bps?.toFixed(2)}</td>
+
+            {/* ✅ BUTTON */}
+            <td>
+              <button
+                onClick={() =>
+                  navigate("/add-rule", {
+                    state: {
+                      client_ip: flow.client?.ip,
+                      server_ip: flow.server?.ip,
+                      transport: flow.protocol?.l4,
+                      protocol: flow.protocol?.l7,
+                    },
+                  })
+                }
+              >
+                Add Rule
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

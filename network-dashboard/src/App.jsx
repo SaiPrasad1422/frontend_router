@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hosts from "./pages/Hosts";
 import Flows from "./pages/Flows";
 import Stats from "./pages/Stats";
+import Rules from "./pages/Rules";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Hosts />} />
         <Route path="/flows" element={<Flows />} />
         <Route path="/stats" element={<Stats />} />
+        <Route path="/rules" element={<Rules />} />
       </Routes>
     </BrowserRouter>
   );
